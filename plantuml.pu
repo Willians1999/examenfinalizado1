@@ -1,0 +1,54 @@
+class models.pavilion{
+	code:Integer
+}
+
+class models.classroom{
+	code:Integer
+}
+
+class models.cabin{
+	code:Integer
+	location:String
+	code_pavilion:Integer
+	code_classroom:Integer
+}
+
+class models.user{
+	dni:Integer
+	name:String
+	last_name:String
+	age:Integer
+}
+
+class models.elector{
+	code:Integer
+	dni_user:Integer
+	state:boolean
+	mail:String
+}
+
+class models.candidate{
+	code:Integer	
+	dni_user:Integer
+}
+
+class models.vote{
+	code:Integer
+	code_candidate:Integer
+	code_cabin:Integer
+	date:date
+}
+
+models.user <|-- models.elector
+models.user <|-- models.candidate
+models.elector "1" *-- "1" models.vote
+models.vote "*" *-- "1" models.cabin
+models.vote "*" *-- "1" models.candidate
+models.classroom "1" -- "1" models.cabin
+models.classroom "*" --> "1" models.pavilion
+
+class controller userController{
+	vote()
+}
+
+@enduml
